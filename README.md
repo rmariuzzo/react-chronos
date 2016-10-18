@@ -9,22 +9,28 @@
 ### Usage
 
 ```jsx
-  import { Chronology, Timeline, Event, Pin } from 'react-chronos'
+import { Chronology, Timeline, Event, Pin } from 'react-chronos';
 
-  <Chronology>
-    <Timeline />
-    {events.map(event => (
-      <Event>
-        <Pin>
-          <img src={event.user.avatar} />
-        </Pin>
-        <EventDetails>
-          <h3>{event.title}</h3>
-          <p>{event.description}</p>
-        </EventDetails>
-      </Event>
-    ))}
-  </Chronology>
+class Dashboard extends Component {
+  render() {
+    return (
+      <Chronology>
+        <Timeline />
+        {events.map(event => (
+          <Event>
+            <Pin>
+              <img src={event.user.avatar} />
+            </Pin>
+            <EventDetails>
+              <h3>{event.title}</h3>
+              <p>{event.description}</p>
+            </EventDetails>
+          </Event>
+        ))}
+      </Chronology>
+    );
+  }
+}
 ```
 
 ### Feature
