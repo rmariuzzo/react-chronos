@@ -1,0 +1,25 @@
+{
+  "name": "react-chronos",
+  "version": "1.0.0",
+  "description": "⛓ React chronology components: Timeline, Event, EventDetails and Pin.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmariuzzo/react-chronos.git"
+  },
+  "keywords": [
+    "react",
+    "chronology",
+    "timeline",
+    "event"
+  ],
+  "author": "Rubens Mariuzzo <rubens@mariuzzo.com> (http://github.com/rmariuzzo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rmariuzzo/react-chronos/issues"
+  },
+  "homepage": "https://github.com/rmariuzzo/react-chronos#readme"
+}
