@@ -1,6 +1,6 @@
-# React Timeline
+# React Chronos
 
-⛓ React timeline component.
+⛓ React chronology components: Timeline, Event, EventDetails and Pin.
 
 # 🔨 This project is currently work in progress
 
@@ -8,7 +8,7 @@
 
 ### Usage
 
-```js
+```jsx
   import { Chronology, Timeline, Event, Pin } from 'react-chronos'
 
   <Chronology>
