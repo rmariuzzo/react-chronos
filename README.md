@@ -8,25 +8,18 @@
 
 ### Usage
 
-```jsx
+```js
 import { Chronology, Timeline, Event, Pin } from 'react-chronos';
 
 class Dashboard extends Component {
   render() {
     return (
-      <Chronology>
-        <Timeline />
-        {events.map(event => (
-          <Event>
-            <Pin>
-              <img src={event.user.avatar} />
-            </Pin>
-            <EventDetails>
-              <h3>{event.title}</h3>
-              <p>{event.description}</p>
-            </EventDetails>
-          </Event>
-        ))}
+      <Chronology
+        tagName="ul"
+        timeline="vertical"
+        eventSelector=".event"
+        markerSelector=".marker"
+        >
       </Chronology>
     );
   }
@@ -35,18 +28,7 @@ class Dashboard extends Component {
 
 ### Feature
 
- - [ ] Single horizontal `<Timeline />` rendering.
- - [ ] Single vertical `<Timeline />` rendering.
- - [ ] Dual horizontal `<Timeline />` rendering.
- - [ ] Dual vertical `<Timeline />` rendering.
- - [ ] Single horizontal `<Event />` layout support.
- - [ ] Single vertical `<Event />` layout support.
- - [ ] Dual horizontal `<Event />` layout support.
- - [ ] Dual vertical `<Event />` layout support.
- - [ ] Single horizontal timeline's `<Pin />` attachment.
- - [ ] Single vertical timeline's `<Pin />` attachment.
- - [ ] Dual horizontal timeline's `<Pin />` attachment.
- - [ ] Dual vertical timeline's `<Pin />` attachment.
-
- 
- 
+ - [ ] Single horizontal `<Chronology />` rendering.
+ - [ ] Single vertical `<Chronology />` rendering.
+ - [ ] Dual horizontal `<Chronology />` rendering.
+ - [ ] Dual vertical `<Chronology />` rendering.

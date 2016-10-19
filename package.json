@@ -48,5 +48,9 @@
     "react-dom": "^15.3.2",
     "webpack": "^1.13.2",
     "@kadira/storybook": "^2.21.0"
+  },
+  "dependencies": {
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0"
   }
 }
