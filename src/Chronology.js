@@ -16,7 +16,7 @@ class Chronology extends React.Component {
   }
 
   styleTimeline() {
-    if (this.options.type === 'horizonal') {
+    if (this.options.type === 'horizontal') {
       this.styles.timeline = { ...styles.timeline, ...styles.timelineHorizontal };
     } else if (this.options.type === 'vertical') {
       this.styles.timeline = { ...styles.timeline, ...styles.timelineVertical };
@@ -30,7 +30,7 @@ class Chronology extends React.Component {
     let sides = { a: 0, b: 0 };
     Array.prototype.forEach.call(events, (event) => {
       event.style.position = 'absolute';
-      if (this.options.type === 'horizonal') {
+      if (this.options.type === 'horizontal') {
         // Select in which side to put the event.
         if (sides.a <= sides.b) {
           event.style.top = 0;
@@ -41,6 +41,7 @@ class Chronology extends React.Component {
           event.style.left = `${sides.b}px`;
           sides.b += utils.outerWidth(event);
         }
+        console.log(sides);
         // Adjust the width of the container and the timeline.
         // TODO The container should only be resized if the width wasn't provided.
         // this.container.style.width = Math.max(sides.a, sides.b) + 'px';
