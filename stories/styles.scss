@@ -1,0 +1,58 @@
+.event {
+    background-color: #fe6191;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 5px solid #6c6349;
+
+    &.event-vertical {
+        margin-bottom: 15px;
+        width: 45%;
+    }
+
+    &.event-horizontal {
+        margin-right: 15px;
+        height: 45%;
+    }
+}
+
+.marker {
+    width: 16px;
+    height: 16px;
+    background-color: #263238;
+    border-radius: 16px;
+    margin: 0 10px 10px 0;
+
+    &.marker-left:before,
+    &.marker-right:before,
+    &.marker-top:before,
+    &.marker-bottom:before {
+        content: "";
+        display: block;
+        position: absolute;
+        background-color: #263238;
+    }
+
+    &.marker-left:before,
+    &.marker-right:before {
+        top: 50%;
+        height: 2px;
+        width: 100px;
+        margin-top: -1px;
+    }
+
+    &.marker-top:before,
+    &.marker-bottom:before {
+        left: 50%;
+        width: 2px;
+        height: 100px;
+        margin-left: -1px;
+    }
+
+    &.marker-top:before {
+        bottom: 0;
+    }
+
+    &.marker-bottom {
+        top: 0;
+    }
+}

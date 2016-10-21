@@ -1,7 +1,7 @@
 import React from 'react';
 import { Chronology, Timeline } from '../src/Chronos';
 
-let styles;
+require('./styles.scss');
 
 class VerticalChronologyWithMarkers extends React.Component {
 
@@ -30,10 +30,10 @@ class VerticalChronologyWithMarkers extends React.Component {
         <Chronology type="vertical">
           {this.state.events.map((event, i) => (
             <div key={event.id}>
-              <div className="marker" style={ styles.marker }></div>
+              <div className="marker"></div>
               <div
-                style={{ ...styles.event, ...{ height: `${sizes[i % sizes.length]}px` } }}
-                className="event"
+                style={{ height: `${sizes[i % sizes.length]}px` }}
+                className="event event-vertical"
                 >
                 {`#${i}`}
               </div>
@@ -44,23 +44,5 @@ class VerticalChronologyWithMarkers extends React.Component {
     );
   }
 }
-
-styles = {
-  event: {
-    backgroundColor: '#fe6191',
-    padding: '10px',
-    marginBottom: '15px',
-    width: '45%',
-    boxSizing: 'border-box',
-    border: '5px solid #6c6349',
-  },
-  marker: {
-    width: '16px',
-    height: '16px',
-    backgroundColor: '#263238',
-    borderRadius: '16px',
-    marginBottom: '10px',
-  }
-};
 
 export default VerticalChronologyWithMarkers;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Chronology, Timeline } from '../src/Chronos';
 
-let styles;
+require('./styles.scss');
 
 class HorizontalChronologyWithMarkers extends React.Component {
 
@@ -27,13 +27,13 @@ class HorizontalChronologyWithMarkers extends React.Component {
       <div>
         <button onClick={this.handleAddEvent}>Add Event</button>
         <hr/>
-        <Chronology type="horizontal" style={styles.chronology}>
+        <Chronology type="horizontal" style={{ height: 300 }}>
           {this.state.events.map((event, i) => (
             <div key={event.id}>
-              <div className="marker" style={styles.marker}></div>
+              <div className="marker"></div>
               <div
-                style={{ ...styles.event, ...{ width: `${sizes[i % sizes.length]}px` } }}
-                className="event"
+                style={{ width: `${sizes[i % sizes.length]}px` }}
+                className="event event-horizontal"
                 >
                 {`#${i}`}
               </div>
@@ -44,26 +44,5 @@ class HorizontalChronologyWithMarkers extends React.Component {
     );
   }
 }
-
-styles = {
-  chronology: {
-    height: '300px',
-  },
-  event: {
-    backgroundColor: '#fe6191',
-    padding: '10px',
-    marginRight: '15px',
-    height: '45%',
-    boxSizing: 'border-box',
-    border: '5px solid #6c6349',
-  },
-  marker: {
-    width: '16px',
-    height: '16px',
-    backgroundColor: '#263238',
-    borderRadius: '16px',
-    marginRight: '10px',
-  }
-};
 
 export default HorizontalChronologyWithMarkers;
