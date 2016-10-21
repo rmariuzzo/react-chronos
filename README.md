@@ -8,27 +8,23 @@
 
 ### Usage
 
-```js
-import { Chronology, Timeline, Event, Pin } from 'react-chronos';
+```jsx
+import Chronology from 'react-chronos';
 
-class Dashboard extends Component {
-  render() {
-    return (
-      <Chronology
-        tagName="ul"
-        timeline="vertical"
-        eventSelector=".event"
-        markerSelector=".marker"
-        >
-      </Chronology>
-    );
-  }
-}
+<Chronology type="vertical">
+    {events.map(event => (
+        <div class="marker"></div>
+        <div class="event">{ event.details }</div>
+    ))}
+</Chronology>
 ```
 
-### Feature
+## Documentation
 
- - [ ] Single horizontal `<Chronology />` rendering.
- - [ ] Single vertical `<Chronology />` rendering.
- - [ ] Dual horizontal `<Chronology />` rendering.
- - [ ] Dual vertical `<Chronology />` rendering.
+### `Chronology`
+
+The `Chronology` component is the main and only component provided by `react-chronos`. It accepts the following properties:
+
+#### `type`
+
+The type of chronology and timeline to render. It can one of the following values: `horizontal` or `vertical`. If not specified, the default will be `vertical`.
