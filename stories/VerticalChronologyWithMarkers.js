@@ -31,10 +31,8 @@ class VerticalChronologyWithMarkers extends React.Component {
           {this.state.events.map((event, i) => (
             <div key={event.id}>
               <div className="marker"></div>
-              <div
-                style={{ height: `${sizes[i % sizes.length]}px` }}
-                className="event event-vertical"
-                >
+              <div className="event event-vertical"
+                style={{ height: `${sizes[i % sizes.length]}px` }}>
                 {`#${i}`}
               </div>
             </div>
