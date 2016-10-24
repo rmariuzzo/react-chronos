@@ -52,7 +52,7 @@ class Chronology extends React.Component {
     const containerWidth = this.container.offsetWidth;
     const containerHeight = this.container.offsetHeight;
 
-    const { type, markerClassNames } = this.props;
+    const { type, eventClassNames, markerClassNames } = this.props;
 
     // Positionate events side by side.
     let sides = { a: 0, b: 0 };
@@ -68,10 +68,12 @@ class Chronology extends React.Component {
           event.style.top = 0;
           event.style.left = `${sides.a}px`;
           sides.a += utils.outerWidth(event);
+          event.className = classnames(event.className, eventClassNames.top);
         } else {
           event.style.bottom = 0;
           event.style.left = `${sides.b}px`;
           sides.b += utils.outerWidth(event);
+          event.className = classnames(event.className, eventClassNames.bottom);
         }
 
         // Position the marker.
@@ -109,10 +111,12 @@ class Chronology extends React.Component {
           event.style.left = 0;
           event.style.top = `${sides.a}px`;
           sides.a += utils.outerHeight(event);
+          event.className = classnames(event.className, eventClassNames.left);
         } else {
           event.style.right = 0;
           event.style.top = `${sides.b}px`;
           sides.b += utils.outerHeight(event);
+          event.className = classnames(event.className, eventClassNames.right);
         }
 
         // Position the marker.
@@ -178,6 +182,7 @@ class Chronology extends React.Component {
     let {
       type,
       eventSelector,
+      eventClassNames,
       markerSelector,
       markerClassNames,
       markerStyles,
@@ -197,6 +202,12 @@ class Chronology extends React.Component {
 Chronology.propTypes = {
   type: PropTypes.oneOf(['horizontal', 'vertical']),
   eventSelector: PropTypes.string,
+  eventClassNames: PropTypes.shape({
+    left: PropTypes.string,
+    right: PropTypes.string,
+    top: PropTypes.string,
+    bottom: PropTypes.string,
+  }),
   markerSelector: PropTypes.string,
   markerClassNames: PropTypes.shape({
     left: PropTypes.string,
@@ -204,30 +215,24 @@ Chronology.propTypes = {
     top: PropTypes.string,
     bottom: PropTypes.string,
   }),
-  markerStyles: PropTypes.shape({
-    left: PropTypes.object,
-    right: PropTypes.object,
-    top: PropTypes.object,
-    bottom: PropTypes.object,
-  }),
   timelineStyle: PropTypes.object,
 };
 
 Chronology.defaultProps = {
   type: 'vertical',
   eventSelector: '.event',
+  eventClassNames: {
+    left: 'event-left',
+    right: 'event-right',
+    top: 'event-top',
+    bottom: 'event-bottom',
+  },
   markerSelector: '.marker',
   markerClassNames: {
     left: 'marker-left',
     right: 'marker-right',
     top: 'marker-top',
     bottom: 'marker-bottom',
-  },
-  markerStyles: {
-    left: {},
-    right: {},
-    top: {},
-    bottom: {},
   },
   timelineStyle: {
     backgroundColor: '#888',

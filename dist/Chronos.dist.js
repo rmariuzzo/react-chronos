@@ -161,6 +161,7 @@
 
 	      var _props = this.props;
 	      var type = _props.type;
+	      var eventClassNames = _props.eventClassNames;
 	      var markerClassNames = _props.markerClassNames;
 
 	      // Positionate events side by side.
@@ -178,10 +179,12 @@
 	            event.style.top = 0;
 	            event.style.left = sides.a + 'px';
 	            sides.a += utils.outerWidth(event);
+	            event.className = (0, _dedupe2.default)(event.className, eventClassNames.top);
 	          } else {
 	            event.style.bottom = 0;
 	            event.style.left = sides.b + 'px';
 	            sides.b += utils.outerWidth(event);
+	            event.className = (0, _dedupe2.default)(event.className, eventClassNames.bottom);
 	          }
 
 	          // Position the marker.
@@ -219,10 +222,12 @@
 	            event.style.left = 0;
 	            event.style.top = sides.a + 'px';
 	            sides.a += utils.outerHeight(event);
+	            event.className = (0, _dedupe2.default)(event.className, eventClassNames.left);
 	          } else {
 	            event.style.right = 0;
 	            event.style.top = sides.b + 'px';
 	            sides.b += utils.outerHeight(event);
+	            event.className = (0, _dedupe2.default)(event.className, eventClassNames.right);
 	          }
 
 	          // Position the marker.
@@ -301,12 +306,13 @@
 	      var _props2 = this.props;
 	      var type = _props2.type;
 	      var eventSelector = _props2.eventSelector;
+	      var eventClassNames = _props2.eventClassNames;
 	      var markerSelector = _props2.markerSelector;
 	      var markerClassNames = _props2.markerClassNames;
 	      var markerStyles = _props2.markerStyles;
 	      var timelineStyle = _props2.timelineStyle;
 
-	      var otherProps = _objectWithoutProperties(_props2, ['type', 'eventSelector', 'markerSelector', 'markerClassNames', 'markerStyles', 'timelineStyle']);
+	      var otherProps = _objectWithoutProperties(_props2, ['type', 'eventSelector', 'eventClassNames', 'markerSelector', 'markerClassNames', 'markerStyles', 'timelineStyle']);
 
 	      return _react2.default.createElement(
 	        'div',
@@ -327,6 +333,12 @@
 	Chronology.propTypes = {
 	  type: _react.PropTypes.oneOf(['horizontal', 'vertical']),
 	  eventSelector: _react.PropTypes.string,
+	  eventClassNames: _react.PropTypes.shape({
+	    left: _react.PropTypes.string,
+	    right: _react.PropTypes.string,
+	    top: _react.PropTypes.string,
+	    bottom: _react.PropTypes.string
+	  }),
 	  markerSelector: _react.PropTypes.string,
 	  markerClassNames: _react.PropTypes.shape({
 	    left: _react.PropTypes.string,
@@ -334,30 +346,24 @@
 	    top: _react.PropTypes.string,
 	    bottom: _react.PropTypes.string
 	  }),
-	  markerStyles: _react.PropTypes.shape({
-	    left: _react.PropTypes.object,
-	    right: _react.PropTypes.object,
-	    top: _react.PropTypes.object,
-	    bottom: _react.PropTypes.object
-	  }),
 	  timelineStyle: _react.PropTypes.object
 	};
 
 	Chronology.defaultProps = {
 	  type: 'vertical',
 	  eventSelector: '.event',
+	  eventClassNames: {
+	    left: 'event-left',
+	    right: 'event-right',
+	    top: 'event-top',
+	    bottom: 'event-bottom'
+	  },
 	  markerSelector: '.marker',
 	  markerClassNames: {
 	    left: 'marker-left',
 	    right: 'marker-right',
 	    top: 'marker-top',
 	    bottom: 'marker-bottom'
-	  },
-	  markerStyles: {
-	    left: {},
-	    right: {},
-	    top: {},
-	    bottom: {}
 	  },
 	  timelineStyle: {
 	    backgroundColor: '#888'
