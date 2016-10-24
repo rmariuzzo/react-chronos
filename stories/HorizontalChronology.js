@@ -27,7 +27,10 @@ class HorizontalChronology extends React.Component {
       <div>
         <button onClick={this.handleAddEvent}>Add Event</button>
         <hr/>
-        <Chronology type="horizontal" style={{ height: '300px' }}>
+        <Chronology
+          type="horizontal"
+          timelineStyle={{ height: '2px', backgroundColor: '#aaa' }}
+          style={{ height: '300px' }}>
           {this.state.events.map((event, i) => (
             <div
               key={event.id}

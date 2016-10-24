@@ -121,10 +121,9 @@
 	    key: 'styleTimeline',
 	    value: function styleTimeline() {
 	      this.timeline.style.position = 'absolute';
-	      this.timeline.style.backgroundColor = '#ccc';
 
 	      if (this.props.type === 'horizontal') {
-	        var timelineHeight = 4;
+	        var timelineHeight = this.timeline.offsetHeight;
 	        var containerHeight = this.container.offsetHeight;
 	        var timelineTop = (containerHeight - timelineHeight) / containerHeight / 2;
 	        this.timeline.style.top = timelineTop * 100 + '%';
@@ -132,7 +131,7 @@
 	        this.timeline.style.height = timelineHeight + 'px';
 	        this.timeline.style.marginTop = '-' + timelineHeight / 2 + 'px';
 	      } else if (this.props.type === 'vertical') {
-	        var timelineWidth = 4;
+	        var timelineWidth = this.timeline.offsetWidth;
 	        var containerWidth = this.container.offsetWidth;
 	        var timelineLeft = (containerWidth - timelineWidth) / containerWidth / 2;
 	        this.timeline.style.left = timelineLeft * 100 + '%';
@@ -305,15 +304,16 @@
 	      var markerSelector = _props2.markerSelector;
 	      var markerClassNames = _props2.markerClassNames;
 	      var markerStyles = _props2.markerStyles;
+	      var timelineStyle = _props2.timelineStyle;
 
-	      var otherProps = _objectWithoutProperties(_props2, ['type', 'eventSelector', 'markerSelector', 'markerClassNames', 'markerStyles']);
+	      var otherProps = _objectWithoutProperties(_props2, ['type', 'eventSelector', 'markerSelector', 'markerClassNames', 'markerStyles', 'timelineStyle']);
 
 	      return _react2.default.createElement(
 	        'div',
 	        _extends({}, otherProps, { ref: function ref(el) {
 	            return _this3.container = el;
 	          } }),
-	        _react2.default.createElement('div', { ref: function ref(el) {
+	        _react2.default.createElement('div', { style: timelineStyle, ref: function ref(el) {
 	            return _this3.timeline = el;
 	          } }),
 	        this.props.children
@@ -339,7 +339,8 @@
 	    right: _react.PropTypes.object,
 	    top: _react.PropTypes.object,
 	    bottom: _react.PropTypes.object
-	  })
+	  }),
+	  timelineStyle: _react.PropTypes.object
 	};
 
 	Chronology.defaultProps = {
@@ -357,6 +358,9 @@
 	    right: {},
 	    top: {},
 	    bottom: {}
+	  },
+	  timelineStyle: {
+	    backgroundColor: '#888'
 	  }
 	};
 

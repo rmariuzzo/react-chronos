@@ -27,7 +27,9 @@ class VerticalChronology extends React.Component {
       <div>
         <button onClick={this.handleAddEvent}>Add Event</button>
         <hr/>
-        <Chronology type="vertical">
+        <Chronology
+          type="vertical"
+          timelineStyle={{ width: '2px', backgroundColor: '#aaa' }}>
           {this.state.events.map((event, i) => (
             <div
               key={event.id}

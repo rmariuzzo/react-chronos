@@ -19,10 +19,9 @@ class Chronology extends React.Component {
    */
   styleTimeline() {
     this.timeline.style.position = 'absolute';
-    this.timeline.style.backgroundColor = '#ccc';
 
     if (this.props.type === 'horizontal') {
-      const timelineHeight = 4;
+      const timelineHeight = this.timeline.offsetHeight;
       const containerHeight = this.container.offsetHeight;
       const timelineTop = ((containerHeight - timelineHeight) / containerHeight) / 2;
       this.timeline.style.top = `${timelineTop * 100}%`;
@@ -30,7 +29,7 @@ class Chronology extends React.Component {
       this.timeline.style.height = `${timelineHeight}px`;
       this.timeline.style.marginTop = `-${timelineHeight / 2}px`;
     } else if (this.props.type === 'vertical') {
-      const timelineWidth = 4;
+      const timelineWidth = this.timeline.offsetWidth;
       const containerWidth = this.container.offsetWidth;
       const timelineLeft = ((containerWidth - timelineWidth) / containerWidth) / 2;
       this.timeline.style.left = `${timelineLeft * 100}%`;
@@ -176,11 +175,19 @@ class Chronology extends React.Component {
   render() {
 
     // Extract component properties and extra passed properties.
-    let { type, eventSelector, markerSelector, markerClassNames, markerStyles, ...otherProps } = this.props;
+    let {
+      type,
+      eventSelector,
+      markerSelector,
+      markerClassNames,
+      markerStyles,
+      timelineStyle,
+      ...otherProps
+    } = this.props;
 
     return (
       <div {...otherProps} ref={(el) => this.container = el}>
-        <div ref={(el) => this.timeline = el}></div>
+        <div style={timelineStyle} ref={(el) => this.timeline = el}></div>
         {this.props.children}
       </div>
     );
@@ -203,6 +210,7 @@ Chronology.propTypes = {
     top: PropTypes.object,
     bottom: PropTypes.object,
   }),
+  timelineStyle: PropTypes.object,
 };
 
 Chronology.defaultProps = {
@@ -220,6 +228,9 @@ Chronology.defaultProps = {
     right: {},
     top: {},
     bottom: {},
+  },
+  timelineStyle: {
+    backgroundColor: '#888',
   },
 };
 
