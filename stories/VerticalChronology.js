@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chronology, Timeline } from '../src/Chronos';
+import { Chronology } from '../src/Chronos';
 
 let styles;
 
