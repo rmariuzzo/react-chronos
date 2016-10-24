@@ -97,35 +97,55 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var styles = void 0;
-
 	/**
 	 * The Chronology component is the main and base component.
 	 */
-
 	var Chronology = function (_React$Component) {
 	  _inherits(Chronology, _React$Component);
 
+	  /**
+	   * Construct a new chronlogy.
+	   */
 	  function Chronology(props) {
 	    _classCallCheck(this, Chronology);
 
-	    var _this = _possibleConstructorReturn(this, (Chronology.__proto__ || Object.getPrototypeOf(Chronology)).call(this, props));
-
-	    _this.styles = {
-	      timeline: {}
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, (Chronology.__proto__ || Object.getPrototypeOf(Chronology)).call(this, props));
 	  }
+
+	  /**
+	   * Apply styling to timeline.
+	   */
+
 
 	  _createClass(Chronology, [{
 	    key: 'styleTimeline',
 	    value: function styleTimeline() {
+	      this.timeline.style.position = 'absolute';
+	      this.timeline.style.backgroundColor = '#ccc';
+
 	      if (this.props.type === 'horizontal') {
-	        this.styles.timeline = _extends({}, styles.timeline, styles.timelineHorizontal);
+	        var timelineHeight = 4;
+	        var containerHeight = this.container.offsetHeight;
+	        var timelineTop = (containerHeight - timelineHeight) / containerHeight / 2;
+	        this.timeline.style.top = timelineTop * 100 + '%';
+	        this.timeline.style.left = 0;
+	        this.timeline.style.height = timelineHeight + 'px';
+	        this.timeline.style.marginTop = '-' + timelineHeight / 2 + 'px';
 	      } else if (this.props.type === 'vertical') {
-	        this.styles.timeline = _extends({}, styles.timeline, styles.timelineVertical);
+	        var timelineWidth = 4;
+	        var containerWidth = this.container.offsetWidth;
+	        var timelineLeft = (containerWidth - timelineWidth) / containerWidth / 2;
+	        this.timeline.style.left = timelineLeft * 100 + '%';
+	        this.timeline.style.top = 0;
+	        this.timeline.style.width = timelineWidth + 'px';
+	        this.timeline.style.marginTop = '-' + timelineWidth / 2 + 'px';
 	      }
 	    }
+
+	    /**
+	     * Apply styling to events and its markers (if any).
+	     */
+
 	  }, {
 	    key: 'styleEvents',
 	    value: function styleEvents() {
@@ -136,6 +156,9 @@
 
 	      var centerX = this.container.offsetWidth / 2;
 	      var centerY = this.container.offsetHeight / 2;
+
+	      var containerWidth = this.container.offsetWidth;
+	      var containerHeight = this.container.offsetHeight;
 
 	      var _props = this.props;
 	      var type = _props.type;
@@ -169,7 +192,8 @@
 	            marker.className = (0, _dedupe2.default)(marker.className, className);
 
 	            marker.style.position = 'absolute';
-	            marker.style.top = centerY - marker.offsetHeight / 2 + 'px';
+	            var markerTop = (containerHeight - marker.offsetHeight) / containerHeight / 2;
+	            marker.style.top = markerTop * 100 + '%';
 
 	            var nextMarkerLeft = parseInt(event.style.left, 10);
 	            var markerOuterWidth = utils.outerWidth(marker);
@@ -209,7 +233,8 @@
 	            _marker.className = (0, _dedupe2.default)(_marker.className, _className);
 
 	            _marker.style.position = 'absolute';
-	            _marker.style.left = centerX - _marker.offsetWidth / 2 + 'px';
+	            var markerLeft = (containerWidth - _marker.offsetWidth) / containerWidth / 2;
+	            _marker.style.left = markerLeft * 100 + '%';
 
 	            var nextMarkerTop = parseInt(event.style.top, 10);
 	            var markerOuterHeight = utils.outerHeight(_marker);
@@ -231,6 +256,11 @@
 	        }
 	      });
 	    }
+
+	    /**
+	     * Redraw the entire chronology.
+	     */
+
 	  }, {
 	    key: 'redraw',
 	    value: function redraw() {
@@ -238,21 +268,37 @@
 	      this.styleTimeline();
 	      this.styleEvents();
 	    }
+
+	    /**
+	     * Redraw upon mounting.
+	     */
+
 	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.redraw();
 	    }
+
+	    /**
+	     * Redraw upon update.
+	     */
+
 	  }, {
 	    key: 'componentDidUpdate',
 	    value: function componentDidUpdate() {
 	      this.redraw();
 	    }
+
+	    /**
+	     * Render the chronology.
+	     */
+
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this3 = this;
 
+	      // Extract component properties and extra passed properties.
 	      var _props2 = this.props;
 	      var type = _props2.type;
 	      var eventSelector = _props2.eventSelector;
@@ -267,7 +313,7 @@
 	        _extends({}, otherProps, { ref: function ref(el) {
 	            return _this3.container = el;
 	          } }),
-	        _react2.default.createElement('div', { style: this.styles.timeline, ref: function ref(el) {
+	        _react2.default.createElement('div', { ref: function ref(el) {
 	            return _this3.timeline = el;
 	          } }),
 	        this.props.children
@@ -311,25 +357,6 @@
 	    right: {},
 	    top: {},
 	    bottom: {}
-	  }
-	};
-
-	styles = {
-	  timeline: {
-	    position: 'absolute',
-	    backgroundColor: '#ccc'
-	  },
-	  timelineHorizontal: {
-	    top: '50%',
-	    left: '0',
-	    height: '4px',
-	    marginTop: '-2px'
-	  },
-	  timelineVertical: {
-	    left: '50%',
-	    top: '0',
-	    width: '4px',
-	    marginLeft: '-2px'
 	  }
 	};
 

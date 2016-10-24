@@ -1,35 +1,57 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames/dedupe';
-import * as utils from './utils'
-
-let styles;
+import * as utils from './utils';
 
 /**
  * The Chronology component is the main and base component.
  */
 class Chronology extends React.Component {
 
+  /**
+   * Construct a new chronlogy.
+   */
   constructor(props) {
     super(props);
-    this.styles = {
-      timeline: {},
-    };
   }
 
+  /**
+   * Apply styling to timeline.
+   */
   styleTimeline() {
+    this.timeline.style.position = 'absolute';
+    this.timeline.style.backgroundColor = '#ccc';
+
     if (this.props.type === 'horizontal') {
-      this.styles.timeline = { ...styles.timeline, ...styles.timelineHorizontal };
+      const timelineHeight = 4;
+      const containerHeight = this.container.offsetHeight;
+      const timelineTop = ((containerHeight - timelineHeight) / containerHeight) / 2;
+      this.timeline.style.top = `${timelineTop * 100}%`;
+      this.timeline.style.left = 0;
+      this.timeline.style.height = `${timelineHeight}px`;
+      this.timeline.style.marginTop = `-${timelineHeight / 2}px`;
     } else if (this.props.type === 'vertical') {
-      this.styles.timeline = { ...styles.timeline, ...styles.timelineVertical };
+      const timelineWidth = 4;
+      const containerWidth = this.container.offsetWidth;
+      const timelineLeft = ((containerWidth - timelineWidth) / containerWidth) / 2;
+      this.timeline.style.left = `${timelineLeft * 100}%`;
+      this.timeline.style.top = 0;
+      this.timeline.style.width = `${timelineWidth}px`;
+      this.timeline.style.marginTop = `-${timelineWidth / 2}px`;
     }
   }
 
+  /**
+   * Apply styling to events and its markers (if any).
+   */
   styleEvents() {
     const events = Array.from(this.container.querySelectorAll(this.props.eventSelector));
     const markers = Array.from(this.container.querySelectorAll(this.props.markerSelector));
 
     const centerX = this.container.offsetWidth / 2;
     const centerY = this.container.offsetHeight / 2;
+
+    const containerWidth = this.container.offsetWidth;
+    const containerHeight = this.container.offsetHeight;
 
     const { type, markerClassNames } = this.props;
 
@@ -60,7 +82,8 @@ class Chronology extends React.Component {
           marker.className = classnames(marker.className, className);
 
           marker.style.position = 'absolute';
-          marker.style.top = `${(centerY - (marker.offsetHeight / 2))}px`;
+          const markerTop = ((containerHeight - marker.offsetHeight) / containerHeight) / 2;
+          marker.style.top = `${markerTop * 100}%`;
 
           let nextMarkerLeft = parseInt(event.style.left, 10);
           const markerOuterWidth = utils.outerWidth(marker);
@@ -100,7 +123,8 @@ class Chronology extends React.Component {
           marker.className = classnames(marker.className, className);
 
           marker.style.position = 'absolute';
-          marker.style.left = `${(centerX - (marker.offsetWidth / 2))}px`;
+          const markerLeft = ((containerWidth - marker.offsetWidth) / containerWidth) / 2;
+          marker.style.left = `${markerLeft * 100}%`;
 
           let nextMarkerTop = parseInt(event.style.top, 10);
           const markerOuterHeight = utils.outerHeight(marker);
@@ -123,27 +147,40 @@ class Chronology extends React.Component {
     });
   }
 
+  /**
+   * Redraw the entire chronology.
+   */
   redraw() {
     this.container.style.position = 'relative';
     this.styleTimeline();
     this.styleEvents();
   }
 
+  /**
+   * Redraw upon mounting.
+   */
   componentDidMount() {
     this.redraw();
   }
 
+  /**
+   * Redraw upon update.
+   */
   componentDidUpdate() {
     this.redraw();
   }
 
+  /**
+   * Render the chronology.
+   */
   render() {
 
+    // Extract component properties and extra passed properties.
     let { type, eventSelector, markerSelector, markerClassNames, markerStyles, ...otherProps } = this.props;
 
     return (
-      <div { ...otherProps } ref={(el) => this.container = el}>
-        <div style={this.styles.timeline} ref={(el) => this.timeline = el}></div>
+      <div {...otherProps} ref={(el) => this.container = el}>
+        <div ref={(el) => this.timeline = el}></div>
         {this.props.children}
       </div>
     );
@@ -183,25 +220,6 @@ Chronology.defaultProps = {
     right: {},
     top: {},
     bottom: {},
-  },
-};
-
-styles = {
-  timeline: {
-    position: 'absolute',
-    backgroundColor: '#ccc',
-  },
-  timelineHorizontal: {
-    top: '50%',
-    left: '0',
-    height: '4px',
-    marginTop: '-2px',
-  },
-  timelineVertical: {
-    left: '50%',
-    top: '0',
-    width: '4px',
-    marginLeft: '-2px',
   },
 };
 
