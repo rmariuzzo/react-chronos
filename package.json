@@ -1,7 +1,7 @@
 {
   "name": "react-chronos",
   "version": "1.0.1",
-  "description": "⛓ React chronology components: Timeline, Event, EventDetails and Pin.",
+  "description": "⛓ React chronology component providing dual chronological timelines.",
   "main": "./lib/Chronos.js",
   "scripts": {
     "build": "webpack",
