@@ -1,6 +1,6 @@
 {
   "name": "react-chronos",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "⛓ React chronology components: Timeline, Event, EventDetails and Pin.",
   "main": "./dist/Chronos.dist.js",
   "scripts": {
