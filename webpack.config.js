@@ -1,3 +1,6 @@
+const webpack = require('webpack');
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+
 module.exports = {
   entry: './src/Chronos',
 
@@ -26,5 +29,7 @@ module.exports = {
     'react/addons': true,
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true
-  }
+  },
+
+  plugins: [new UglifyJsPlugin({minimize: true})]
 };
