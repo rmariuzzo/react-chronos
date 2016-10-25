@@ -1,27 +1,30 @@
 module.exports = {
-    entry: './src/Chronos',
+  entry: './src/Chronos',
 
-    output: {
-        path: './dist',
-        filename: 'Chronos.dist.js',
-    },
+  output: {
+    path: './lib',
+    filename: 'Chronos.js',
+    library: 'Chronos',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
+  },
 
-    module: {
-        loaders: [
-          {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader'
-          }
-        ]
-    },
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
+    ]
+  },
 
-    externals: {
-        'react': 'React',
-        // Enzyme + React 15 compatibility.
-        'cheerio': 'window',
-        'react/addons': true,
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true
-    }
+  externals: {
+    'react': 'React',
+    // Enzyme + React 15 compatibility.
+    'cheerio': 'window',
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+  }
 };

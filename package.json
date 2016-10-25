@@ -2,13 +2,13 @@
   "name": "react-chronos",
   "version": "1.0.1",
   "description": "⛓ React chronology components: Timeline, Event, EventDetails and Pin.",
-  "main": "./dist/Chronos.dist.js",
+  "main": "./lib/Chronos.js",
   "scripts": {
-    "start": "webpack",
-    "test": "karma start --single-run --browsers PhantomJS",
-    "test:watch": "./node_modules/karma/bin/karma start --browsers PhantomJS",
+    "build": "webpack",
+    "build-storybook": "build-storybook",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test": "karma start --single-run --browsers PhantomJS",
+    "test:watch": "./node_modules/karma/bin/karma start --browsers PhantomJS"
   },
   "repository": {
     "type": "git",
