@@ -46,9 +46,6 @@ class Chronology extends React.Component {
     const events = Array.from(this.container.querySelectorAll(this.props.eventSelector));
     const markers = Array.from(this.container.querySelectorAll(this.props.markerSelector));
 
-    const centerX = this.container.offsetWidth / 2;
-    const centerY = this.container.offsetHeight / 2;
-
     const containerWidth = this.container.offsetWidth;
     const containerHeight = this.container.offsetHeight;
 
@@ -177,18 +174,7 @@ class Chronology extends React.Component {
    * Render the chronology.
    */
   render() {
-
-    // Extract component properties and extra passed properties.
-    let {
-      type,
-      eventSelector,
-      eventClassNames,
-      markerSelector,
-      markerClassNames,
-      markerStyles,
-      timelineStyle,
-      ...otherProps
-    } = this.props;
+    let { timelineStyle, ...otherProps } = this.props;
 
     return (
       <div {...otherProps} ref={(el) => this.container = el}>
