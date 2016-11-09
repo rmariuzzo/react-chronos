@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames/dedupe';
+import { omit, keys } from 'lodash';
 import * as utils from './utils';
 
 /**
@@ -174,10 +175,11 @@ class Chronology extends React.Component {
    * Render the chronology.
    */
   render() {
-    let { timelineStyle, ...otherProps } = this.props;
+    const { timelineStyle } = this.props;
+    const otherProps = omit(this.props, keys(Chronology.propTypes));
 
     return (
-      <div {...otherProps} ref={(el) => this.container = el}>
+      <div ref={(el) => this.container = el} {...otherProps}>
         <div style={timelineStyle} ref={(el) => this.timeline = el}></div>
         {this.props.children}
       </div>

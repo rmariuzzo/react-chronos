@@ -1,5 +1,7 @@
 const webpack = require('webpack');
+
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+const OccurrenceOrderPlugin = webpack.optimize.OccurrenceOrderPlugin;
 
 module.exports = {
   entry: './src/Chronos',
@@ -16,20 +18,25 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        exclude: /node_modules/
       }
     ]
   },
 
-  externals: {
-    'react': 'React',
-    // Enzyme + React 15 compatibility.
-    'cheerio': 'window',
-    'react/addons': true,
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true
-  },
+  externals: [
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
+      }
+    }
+  ],
 
-  plugins: [new UglifyJsPlugin({minimize: true})]
+  plugins: [
+    new OccurrenceOrderPlugin(),
+    new UglifyJsPlugin({minimize: true})
+  ]
 };

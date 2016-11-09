@@ -4,7 +4,7 @@ export function outerHeight(el) {
 
   height += parseInt(style.marginTop) + parseInt(style.marginBottom);
   return height;
-};
+}
 
 export function outerWidth(el) {
   let width = el.offsetWidth;
@@ -12,4 +12,4 @@ export function outerWidth(el) {
 
   width += parseInt(style.marginLeft) + parseInt(style.marginRight);
   return width;
-};
+}
