@@ -4,8 +4,6 @@
 
 ![Preview of dual chronological timelines](https://github.com/rmariuzzo/react-chronos/raw/master/banner.gif)
 
-# ⚠️ This project is currently work in progress
-
 ### Installation
 
 ```shell
