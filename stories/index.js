@@ -1,6 +1,5 @@
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
-import { Chronology, Timeline } from '../src/Chronos';
+import { storiesOf } from '@kadira/storybook';
 
 import HorizontalChronology from './HorizontalChronology';
 import HorizontalChronologyWithMarkers from './HorizontalChronologyWithMarkers';
