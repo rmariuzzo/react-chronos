@@ -1,6 +1,6 @@
 {
   "name": "react-chronos",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "⛓ React chronology component providing dual chronological timelines.",
   "main": "./lib/Chronos.js",
   "scripts": {
